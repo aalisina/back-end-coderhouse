@@ -6,12 +6,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Clases</title>
     <script>
+     
+        class Usuario {
+
+            constructor(nombre, apellido, libros, mascotas) {
+            if(typeof nombre !== 'string') return
+            if(typeof apellido !== 'string') return
+            
+            this.nombre = nombre
+            this.apellido = apellido
+            this.libros = libros
+            this.mascotas = mascotas
+            }
+            
+            
+            addFullName() {
+            return `The full name is: ${this.nombre} ${this.apellido}`
+            }
+          
+            addMascota(mascota) {
+            this.mascotas.push(mascota)
+          
+        }
+
+            getMascotas(){
+            return this.mascotas.length
+        
+    }
+
+            addBook(nombre, autor) {
+            this.nombre = nombre
+            this.autor = nombre
+            const libroNuevo = {nombre, autor}
+            this.libros.push(libroNuevo)
+    }
+
+            getBooks() {
+            return this.libros.map( e => e.nombre)
+    }
+        
+    }
+
+    //Prueba
+    let ali = new Usuario( 'Ali Sina', 'Alizay', [{nombre: 'Cien anos de soledad', autor: 'Gabriel Garcia Marques'}, {nombre: 'El anciano y el mar', autor: 'Ernest Hemingway'}], ['Frodo', 'Leon'])
     
-    </script>
+    console.log(ali.addFullName())
+    ali.addMascota('Tigre')
+    console.log(ali.getMascotas())
+    ali.addBook('De animales a dioses', 'Yuval Noah Harari')
+    console.log(ali.getBooks())
+
+   </script>
 </head>
 
 <body>
-
+<h1>Please open the console to see the methods.<h1>
 </body>
 
 
