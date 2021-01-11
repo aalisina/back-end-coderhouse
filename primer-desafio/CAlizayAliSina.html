@@ -12,7 +12,9 @@
             constructor(nombre, apellido, libros, mascotas) {
             if(typeof nombre !== 'string') return
             if(typeof apellido !== 'string') return
-            
+            if(typeof libros[0] !== 'object') return
+            if(typeof mascotas[0] !== 'string') return
+
             this.nombre = nombre
             this.apellido = apellido
             this.libros = libros
@@ -49,7 +51,7 @@
 
     //Prueba
     let ali = new Usuario( 'Ali Sina', 'Alizay', [{nombre: 'Cien anos de soledad', autor: 'Gabriel Garcia Marques'}, {nombre: 'El anciano y el mar', autor: 'Ernest Hemingway'}], ['Frodo', 'Leon'])
-    
+   
     console.log(ali.addFullName())
     ali.addMascota('Tigre')
     console.log(ali.getMascotas())

@@ -10,6 +10,8 @@
         function Usuario (nombre, apellido, libros, mascotas) {
             if(typeof nombre !== 'string') return
             if(typeof apellido !== 'string') return
+            if(typeof libros[0] !== 'object') return
+            if(typeof mascotas[0] !== 'string') return
             
             this.nombre = nombre
             this.apellido = apellido
