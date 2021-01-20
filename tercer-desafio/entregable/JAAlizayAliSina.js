@@ -8,6 +8,7 @@ const recorrerTexto = (texto, tiempo = 1000, callback) => {
         } else {
             clearInterval(intervalo)
             callback(arrayPalabras.length)
+ //           console.log("Estoy en el else")
         }
     }, tiempo, arrayPalabras)
 }

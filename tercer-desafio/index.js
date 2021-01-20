@@ -118,3 +118,30 @@
 // var texto2 = "Este es otro texto"
 // var texto3 = "El tercer texto"
 
+const recorrerTexto = (texto, tiempo, callback)=> {
+    const palabras = texto.split(' ')
+    let index = 0
+    let intervalo = setInterval( (palabras)=> {
+        // console.log(words)
+        // console.log(`Variable palabras aqui ${palabras}`)
+        if( index < palabras.length) {
+            console.log(palabras[index])
+            index++
+        } else {
+            clearInterval(intervalo)
+            callback(palabras.length)
+        }
+
+    }, tiempo, palabras)
+}
+
+recorrerTexto("Este es un texto de prueba", 1000, (count)=> {
+    totalCount = count
+    
+    recorrerTexto("Segundo texto bla bla bla", 500, (count) => {
+        totalCount += count
+        console.log(totalCount)
+    })
+
+    } 
+)
