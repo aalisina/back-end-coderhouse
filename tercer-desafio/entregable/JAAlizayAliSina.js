@@ -1,21 +1,24 @@
-const fin = () => console.log("Terminado...") 
-
-
-
-function recorrerTexto(str) {
-   // time = time || 1000
-    var strin = str.split(" ")
-    var count = 0
-    
-    var int = setInterval(()=> {
-        if (count >= (strin.length -1)) clearInterval(int)
-        console.log(strin[count++])
-
-    }, 1000)
-
+const recorrerTexto = (texto, tiempo = 1000, callback) => {
+    const arrayPalabras = texto.split(' ')
+    let index = 0
+    let intervalo = setInterval( (palabras) => {
+        if( index < palabras.length) {
+            console.log( palabras[index])
+            index++
+        } else {
+            clearInterval(intervalo)
+            callback(arrayPalabras.length)
+        }
+    }, tiempo, arrayPalabras)
 }
 
-var texto1 = "Hola mundo"
-var texto2 = "Este es otro texto"
-var texto3 = "El tercer texto"
-
+recorrerTexto("Esto es el primer texto", 300, (count) => {
+    let totalCount = count
+    recorrerTexto("Otro ejemplo de texto", 1500, (count)=> {
+        totalCount += count
+            recorrerTexto("Este es el ultimo texto", 700, (count)=> {
+                totalCount += count
+                console.log(`Proceso completo. Los textos tienen ${totalCount} palabras`)
+            })
+    })
+})
