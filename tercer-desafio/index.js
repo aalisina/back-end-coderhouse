@@ -52,9 +52,9 @@
     //     console.log(e.id + e.edad) 
     
     // }
-    clearInterval()
+    // clearInterval()
         
-//         break
+    //     break
 
 //         case 'resta':
         
