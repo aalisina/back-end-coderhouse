@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Funciones Constructoras</title>
+    <script>
+     
+        function Usuario (nombre, apellido, libros, mascotas) {
+            if(typeof nombre !== 'string') return
+            if(typeof apellido !== 'string') return
+            if(typeof libros[0] !== 'object') return
+            if(typeof mascotas[0] !== 'string') return
+            
+            this.nombre = nombre
+            this.apellido = apellido
+            this.libros = libros
+            this.mascotas = mascotas
+            
+            this.addFullName = function() {
+            return `The full name is: ${this.nombre} ${this.apellido}`
+            }
+          
+            this.addMascota = function (mascota) {
+            this.mascotas.push(mascota)
+          
+        }
+
+            this.getMascotas = function (){
+            return this.mascotas.length
+        
+    }
+
+            this.addBook = function (nombre, autor) {
+            this.nombre = nombre
+            this.autor = nombre
+            const libroNuevo = {nombre, autor}
+            this.libros.push(libroNuevo)
+    }
+
+            this.getBooks = function () {
+            return this.libros.map( e => e.nombre)
+    }
+        
+    }
+
+    //Prueba
+    let ali = new Usuario( 'Ali Sina', 'Alizay', [{nombre: 'Cien anos de soledad', autor: 'Gabriel Garcia Marques'}, {nombre: 'El anciano y el mar', autor: 'Ernest Hemingway'}], ['Frodo', 'Leon'])
+    
+    console.log(ali.addFullName())
+    ali.addMascota('Tigre')
+    console.log(ali.getMascotas())
+    ali.addBook('De animales a dioses', 'Yuval Noah Harari')
+    console.log(ali.getBooks())
+
+   </script>
+</head>
+
+<body>
+<h1>Please open the console to see the methods.<h1>
+</body>
+
+
+
+</html>
