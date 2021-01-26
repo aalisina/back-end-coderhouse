@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en-US">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Observable 1</title>
+    <script type="module">
+        import { Observable } from 'https://dev.jspm.io/rxjs@6/_esm2015'
+        const myObservable = Observable.create( obs => {
+            obs.next('Hola')
+            setTimeout( ()=> {
+                obs.next('Que tal')
+                obs.complete()
+
+            },1500)
+        })
+
+        const observer = {
+            next: event => console.log(event),
+            error: error => console.log(error),
+            complete: () => console.log('Complete')
+        }
+        
+        myObservable.subscribe( 
+            event => {
+                console.log(event)
+            }, error => {
+                console.log(error)
+            }, ()=> {
+                console.log('Completed')
+            }
+        )
+
+
+   </script>
+</head>
+
+<body>
+
+</body>
+
+
+
+</html>

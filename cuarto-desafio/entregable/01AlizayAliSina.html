@@ -5,14 +5,56 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Observable 1</title>
-    <script>
-     
 
-
-   </script>
 </head>
 
 <body>
+    <input id="input-text">
+    <span id="mirrorWord"></span>
+
+    <script type="module">
+        import { fromEvent } from 'https://dev.jspm.io/rxjs@6/_esm2015'
+
+        const input = document.getElementById('input-text')
+        const observable = fromEvent( input, 'keyup')
+        const mirror = document.getElementById('mirrorWord')
+
+        let mirrorText = ''
+
+       const subscription = observable.subscribe( e => {
+            mirrorText += e.key
+
+            if(mirrorText === 'error') {
+                subscription.error('Se ingreso la palabra error')
+            }
+
+            if( mirrorText === 'complete') {
+                subscription.complete()
+            }
+            
+            mirrorWord.textContent = mirrorText.split('').reverse().join('')
+            setTimeout( ()=> {
+                subscription.unsubscribe()
+                cleaner()
+
+            },30000)
+
+       }, error => {
+           console.log(error)
+           cleaner()
+       }, ()=> {
+           console.log('Se ingreso la palabra complete')
+           cleaner()
+       })
+
+       const cleaner = ()=> {
+           mirrorText = ''
+           input.value = ''
+           input.disabled = true
+           mirror.textContent = ''
+
+       }
+   </script>
 
 </body>
 
