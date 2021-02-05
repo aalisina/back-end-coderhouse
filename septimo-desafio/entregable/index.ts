@@ -12,6 +12,7 @@ const PORT = process.env.PORT || 8080
 const productos = fs.readFileSync('./productos.txt', 'utf-8')
 
 
+
 app.get('/', (req: Request, res: Response) => {
     res.send('Hola mundo')
 })
@@ -28,7 +29,7 @@ app.get('/items', (req: Request, res: Response) => {
     countItems++
    
     fs.writeFileSync('./items.txt', countItems.toString())
-    res.send(objToSend)
+    res.json(objToSend)
 })
 
 app.get('/visitas', (req: Request, res: Response) => {
@@ -39,7 +40,7 @@ app.get('/visitas', (req: Request, res: Response) => {
         }
         
     }
-    res.send(objToSend)
+    res.json(objToSend)
 })
 
 app.listen(PORT, ()=> {
