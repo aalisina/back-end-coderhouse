@@ -2,7 +2,7 @@
 import express, {Application, Request, Response} from 'express'
 import fs from 'fs'
 
-const app= express()
+const app: Application = express()
 
 app.use(express.json())
 
