@@ -1,38 +1,44 @@
-// Todavia no he terminado
 
 import express, {Application, Request, Response} from 'express'
+import fs from 'fs'
 
-const app: Application = express()
+const app= express()
 
-interface Producto {
-    name: string
-    price: number
+app.use(express.json())
 
-}
 
 const PORT = process.env.PORT || 8080
-
-let productos: Producto[] = []
-
-// const addProduct = (producto: Producto): string => {
-//     productos = [...productos, producto]
-//     return 'Product added'
-// }
+    
+const productos = fs.readFileSync('./productos.txt', 'utf-8')
 
 
 app.get('/', (req: Request, res: Response) => {
     res.send('Hola mundo')
 })
 
-let countItem: number = 0
-let countItems: number = 0
+let countItem = Number(fs.readFileSync('./item.txt', 'utf-8')) || 0
+let countItems = Number(fs.readFileSync('./items.txt', 'utf-8')) || 0
 
 app.get('/items', (req: Request, res: Response) => {
     const objToSend = {
         items: productos,
         cantidad: productos.length
+
     }
     countItems++
+   
+    fs.writeFileSync('./items.txt', countItems.toString())
+    res.send(objToSend)
+})
+
+app.get('/visitas', (req: Request, res: Response) => {
+    const objToSend = {
+        visitas: {
+            items: Number(fs.readFileSync('./item.txt', 'utf-8')),
+            item: Number(fs.readFileSync('./items.txt', 'utf-8')),
+        }
+        
+    }
     res.send(objToSend)
 })
 
