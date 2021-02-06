@@ -20,6 +20,18 @@ app.get('/', (req: Request, res: Response) => {
 let countItem = Number(fs.readFileSync('./item.txt', 'utf-8')) || 0
 let countItems = Number(fs.readFileSync('./items.txt', 'utf-8')) || 0
 
+app.get('/random', (req: Request, res: Response) => {
+    const random = Math.floor(Math.random(productos.length) * (productos.length +1)) )
+    const objToSend = {
+        item: productos[random],
+
+    }
+    countItem++
+   
+    fs.writeFileSync('./item.txt', countItem.toString())
+    res.json(objToSend)
+})
+
 app.get('/items', (req: Request, res: Response) => {
     const objToSend = {
         items: productos,
