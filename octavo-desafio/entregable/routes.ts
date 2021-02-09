@@ -1,4 +1,5 @@
-import express, {Request, Response} from 'express'
+import express, {json, Request, Response} from 'express'
+import  fs  from 'fs'
 import { data } from './database'
 
 const router = express.Router()
@@ -6,6 +7,7 @@ const router = express.Router()
 
 router.get('/productos', (req: Request, res: Response) => {
     if(!data) return res.json({error: 'No hay productos cargados'})
+    res.json(data)
     const objToSend = data.map( (item, index)=> {
         return {
             id: index+1,
@@ -36,7 +38,10 @@ router.get('/productos/:id', (req: Request, res: Response) => {
 router.post('/productos/', (req: Request, res: Response) => {
     const objToCreate = req.body
     data.push(objToCreate)
-    res.send('Producto creado')
+    // guardar no funciona
+    // const dataParsed = JSON.parse(data)
+    // fs.writeFileSync('./database.ts', `export const ${JSON.parse(dataParsed)}`)
+    res.json(data)
 
 })
 
