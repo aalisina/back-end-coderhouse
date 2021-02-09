@@ -12,9 +12,15 @@ router.get('/productos', (req: Request, res: Response) => {
 router.get('/productos/:id', (req: Request, res: Response) => {
     const id  = req.params.id
     const idNum = Number(id)
-    if(idNum > data.length && idNum <= 0) res.json({error: 'Producto no encontrado'})
+    if(idNum > data.length || idNum <= 0) res.json({error: 'Producto no encontrado'})
+    const objToSend = {
+        id: idNum,
+        title: data[data[idNum-1].title,
+        price: data[data[idNum-1].price,
+        thumbnail: data[data[idNum-1].thumbnail,
+    }
     
-    res.json(data[idNum-1])
+    res.json(objToSend)
   
 })
 
