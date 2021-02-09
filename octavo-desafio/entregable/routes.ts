@@ -5,31 +5,17 @@ const router = express.Router()
 
 
 router.get('/productos', (req: Request, res: Response) => {
-    res.send('Productos')
+    if(!data) res.json({error: 'No hay productos cargados'})
+    res.json(data)
 })
 
 router.get('/productos/:id', (req: Request, res: Response) => {
     const id  = req.params.id
     const idNum = Number(id)
-    // console.log(data.length)
-    // if (idNum <= data.length) {
-
-        data.filter( (item, index) => {
-            
-            if(idNum === index+1){
-
-                
-                res.json(item)
-                
-            } 
-            console.log('error');
-            
-        })
-            
-        // })
-    // }
+    if(idNum > data.length && idNum <= 0) res.json({error: 'Producto no encontrado'})
     
-    // console.log('error2')
+    res.json(data[idNum-1])
+  
 })
 
 router.post('/productos/', (req: Request, res: Response) => {
