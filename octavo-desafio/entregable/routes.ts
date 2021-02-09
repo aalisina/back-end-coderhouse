@@ -5,7 +5,7 @@ const router = express.Router()
 
 
 router.get('/productos', (req: Request, res: Response) => {
-    if(!data) res.json({error: 'No hay productos cargados'})
+    if(!data) return res.json({error: 'No hay productos cargados'})
     const objToSend = data.map( (item, index)=> {
         return {
             id: index+1,
@@ -20,7 +20,8 @@ router.get('/productos', (req: Request, res: Response) => {
 router.get('/productos/:id', (req: Request, res: Response) => {
     const id  = req.params.id
     const idNum = Number(id)
-    if(idNum > data.length || idNum <= 0) res.json({error: 'Producto no encontrado'})
+    if(idNum === NaN) return res.json({error: 'Producto no encontrado'})
+    if(idNum > data.length || idNum <= 0) return res.json({error: 'Producto no encontrado'})
     const objToSend = {
         id: idNum,
         title: data[idNum-1].title,
@@ -33,6 +34,8 @@ router.get('/productos/:id', (req: Request, res: Response) => {
 })
 
 router.post('/productos/', (req: Request, res: Response) => {
+    const objToCreate = req.body
+    data.push(objToCreate)
     res.send('Producto creado')
 
 })
