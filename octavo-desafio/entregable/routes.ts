@@ -39,8 +39,8 @@ router.post('/productos/', (req: Request, res: Response) => {
     const objToCreate = req.body
     data.push(objToCreate)
     // guardar no funciona
-    // const dataParsed = JSON.parse(data)
-    // fs.writeFileSync('./database.ts', `export const ${JSON.parse(dataParsed)}`)
+
+    // fs.writeFileSync('./database.ts', `export const = ${data}`)
     res.json(data)
 
 })
