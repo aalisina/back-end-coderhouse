@@ -6,7 +6,15 @@ const router = express.Router()
 
 router.get('/productos', (req: Request, res: Response) => {
     if(!data) res.json({error: 'No hay productos cargados'})
-    res.json(data)
+    const objToSend = data.map( (item, index)=> {
+        return {
+            id: index+1,
+            title: item.title,
+            price: item.price,
+            thumbnail: item.thumbnail
+        }
+    })
+    res.json(objToSend)
 })
 
 router.get('/productos/:id', (req: Request, res: Response) => {
@@ -17,7 +25,7 @@ router.get('/productos/:id', (req: Request, res: Response) => {
         id: idNum,
         title: data[idNum-1].title,
         price: data[idNum-1].price,
-        thumbnail: data[idNum-1].thumbnail,
+        thumbnail: data[idNum-1].thumbnail
     }
 
     res.json(objToSend)
