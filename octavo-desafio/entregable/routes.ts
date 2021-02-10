@@ -38,6 +38,8 @@ router.get('/productos/:id', (req: Request, res: Response) => {
 router.post('/productos/', (req: Request, res: Response) => {
     const objToCreate = req.body
     data.push(objToCreate)
+
+    // Cambia la extension ts a js despues de la compilacion
     fs.writeFileSync('./database.ts', `export const data = ${JSON.stringify(data)}`)
     res.json(data)
 
