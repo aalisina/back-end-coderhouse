@@ -47,14 +47,25 @@ router.post('/productos/', (req: Request, res: Response) => {
 
 router.patch('/productos/:id', (req: Request, res: Response) => {
     const { id } = req.params
-    const { body } = req.body
+    const { body } = req
     const index = Number(id) -1
 
-    // const objToModify = data[index]
-    Object.assign(data[index], ...body)
-    // data[index] = newObj
-    // res.json(newObj)
-    res.json(data[index])
+    const objToModify = data[index]
+    Object.assign(objToModify, body)
+    data[index] = objToModify
+    fs.writeFileSync('./database.ts', `export const data = ${JSON.stringify(data)}`)
+    res.json(objToModify)
+})
+
+router.delete('/productos/:id', (req: Request, res: Response) => {
+    const { id } = req.params
+    const index = Number(id) -1
+    const deletedObj = data[index]
+    const newData = data.filter ( (item, i) => {
+        return index !== i
+    })
+    fs.writeFileSync('./database.ts', `export const data = ${JSON.stringify(newData)}`)
+    res.json(deletedObj)
 })
 
 export default router
