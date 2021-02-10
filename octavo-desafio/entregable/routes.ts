@@ -5,9 +5,9 @@ import { data } from './database'
 const router = express.Router()
 
 
+
 router.get('/productos', (req: Request, res: Response) => {
     if(!data) return res.json({error: 'No hay productos cargados'})
-    res.json(data)
     const objToSend = data.map( (item, index)=> {
         return {
             id: index+1,
@@ -38,9 +38,7 @@ router.get('/productos/:id', (req: Request, res: Response) => {
 router.post('/productos/', (req: Request, res: Response) => {
     const objToCreate = req.body
     data.push(objToCreate)
-    // guardar no funciona
-
-    // fs.writeFileSync('./database.ts', `export const = ${data}`)
+    fs.writeFileSync('./database.ts', `export const data = ${JSON.stringify(data)}`)
     res.json(data)
 
 })
