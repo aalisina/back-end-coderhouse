@@ -1,7 +1,6 @@
 import express, {json, Request, Response} from 'express'
 import  fs  from 'fs'
 import { data } from './database'
-const handlebars = require("express-handlebars")
 
 const router = express.Router()
 
