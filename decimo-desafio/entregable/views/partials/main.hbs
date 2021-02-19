@@ -1,0 +1,45 @@
+<div class="card">
+  <div class="card-body d-flex justify-content-center">
+    <h5 class="card-title justify-content-center">Vista de productos</h5>
+  </div>
+</div>
+{{#if dataExists}}
+
+<div class="container">
+  <div class="row">
+    <div class="col">
+      Nombre
+    </div>
+    <div class="col">
+      Precio
+    </div>
+    <div class="col">
+      Foto
+    </div>
+   </div>
+
+    {{#each data}}
+    <div class="row">
+    <div class="col">
+      {{this.title}}
+    </div>
+    <div class="col">
+      {{this.price}}
+    </div>
+    <div class="col">
+      <img src={{this.thumbnail}} class="img-thumbnail">
+      
+    </div>
+    </div>
+    {{/each}}
+
+</div>
+
+
+{{else}} 
+<div class="card">
+  <div class="card-body d-flex justify-content-center">
+    <h6 class="card-title justify-content-center">No se encontraron productos</h6>
+  </div>
+</div>
+{{/if}}

@@ -1,0 +1,2 @@
+const data = [{"title":"Escuadra","price":"200","thumbnail":"https://http.cat/200","id":1},{"title":"Globo Terráqueo","price":"345.67","thumbnail":"https://http.cat/201","id":2},{"id":3,"title":"Silla","price":"150","thumbnail":"https://http.cat/404"}]
+module.exports = data
