@@ -18,11 +18,7 @@ app.get( '/productos/vista', (req, res) => {
 
 app.get( '/productos/nuevo', (req, res) => {
 
-    // const objToCreate = req.body
-    // data.push(objToCreate)
-
-    // fs.writeFileSync('./database.js', `const data = ${JSON.stringify(data)} \n Esto es editado`+ '\n module.exports = data')
-    res.render("partials/newProduct")
+    res.sendFile(__dirname+'/views/partials/new.html')
 })
 
 app.engine("hbs",handlebars({
