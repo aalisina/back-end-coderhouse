@@ -2,7 +2,7 @@ const express= require('express')
 const routes = require('./routes')
 const data = require('./database')
 const fs = require('fs')
-const pug = require('pug')
+const ejs = require('ejs')
 
 const app = express()
 app.use(express.json())
@@ -12,7 +12,7 @@ app.use(express.urlencoded({
 
 app.get( '/productos/vista', (req, res) => {
 
-res.render(__dirname+'/views/layouts/productos.pug', {data})    
+res.render(__dirname+'/views/layouts/productos.ejs', {data})    
 })
 
 app.get( '/productos/nuevo', (req, res) => {
@@ -23,7 +23,7 @@ app.get( '/productos/nuevo', (req, res) => {
 
 app.set('views','./views');
 
-app.set('view engine','pug');
+app.set('view engine','ejs');
 
 app.use('/api', routes)
 
